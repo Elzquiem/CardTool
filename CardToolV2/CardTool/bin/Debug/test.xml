@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deck>
+	<card>
+		<id>0</id>
+		<title>Test 1</title>
+		<cost>1</cost>
+		<description>Description 1</description>
+	</card>
+	<card>
+		<id>2</id>
+		<title>Test 2</title>
+		<cost>2</cost>
+		<description>Description 2</description>
+	</card>
+	<card>
+		<id>5</id>
+		<title>Test 3</title>
+		<cost>1</cost>
+		<description>Description 3</description>
+	</card>
+	<card>
+		<id>10</id>
+		<title>Test 4</title>
+		<cost>8</cost>
+		<description>Desc 4</description>
+	</card>
+</deck>
