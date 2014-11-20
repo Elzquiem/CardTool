@@ -96,15 +96,15 @@ namespace CardTool
         //
         private void Debug_Click(object sender, RoutedEventArgs e)
         {
-            Card serializedCard1 = new Card(0, 1, "Test 1", "Description 1", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard2 = new Card(2, 2, "Test 2", "Description 2", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.TREASURE, CardEffect.SPEED_UP, CardEffect.SPEED_UP);
-            Card serializedCard3 = new Card(5, 5, "Test 3", "Description 3", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.SLOW, CardEffect.NONE);
-            Card serializedCard4 = new Card(3, 4, "Test 4", "Description 4", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.NONE, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard5 = new Card(12, 2, "Test 5", "Description 5", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard6 = new Card(50, 1, "Test 6", "Description 6", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.TREASURE, CardEffect.SLOW, CardEffect.SLOW);
-            Card serializedCard7 = new Card(42, 42, "Test 7", "La réponse", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.BONUS, Category.NONE, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard8 = new Card(37, 2, "Test 8", "Description 7", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.SPEED_UP, CardEffect.SLOW);
-            Card serializedCard9 = new Card(25, 3, "Test 9", "Description 8", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard1 = new Card(0, 0, 1, "Test 1", "Description 1", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard2 = new Card(2, 0, 2, "Test 2", "Description 2", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.TREASURE, CardEffect.SPEED_UP, CardEffect.SPEED_UP);
+            Card serializedCard3 = new Card(5, 1, 5, "Test 3", "Description 3", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.SLOW, CardEffect.NONE);
+            Card serializedCard4 = new Card(3, 1, 4, "Test 4", "Description 4", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.NONE, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard5 = new Card(12, 1, 2, "Test 5", "Description 5", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard6 = new Card(50, 0, 1, "Test 6", "Description 6", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.TREASURE, CardEffect.SLOW, CardEffect.SLOW);
+            Card serializedCard7 = new Card(42, 2, 42, "Test 7", "La réponse", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.BONUS, Category.NONE, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard8 = new Card(37, 3, 2, "Test 8", "Description 7", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.SPEED_UP, CardEffect.SLOW);
+            Card serializedCard9 = new Card(25, 4, 3, "Test 9", "Description 8", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
 
             // Update collection by adding a card
             //
@@ -136,7 +136,8 @@ namespace CardTool
                 // Affect data from deck (selected card) to current card
                 // Need to use properties setters because properties call OnPropertyChange for UI update
                 //
-                m__currentCard.CardId           = ((Card)CardDeck.SelectedItem).CardId;
+                m__currentCard.CardUniqueId     = ((Card)CardDeck.SelectedItem).CardUniqueId;
+                m__currentCard.CardGlobalId     = ((Card)CardDeck.SelectedItem).CardGlobalId;
                 m__currentCard.CardTitle        = ((Card)CardDeck.SelectedItem).CardTitle;
                 m__currentCard.CardCost         = ((Card)CardDeck.SelectedItem).CardCost;
                 m__currentCard.CardDescription  = ((Card)CardDeck.SelectedItem).CardDescription;
@@ -145,8 +146,6 @@ namespace CardTool
                 m__currentCard.CardImagePath    = ((Card)CardDeck.SelectedItem).CardImagePath;
                 m__currentCard.CardEffect_1     = ((Card)CardDeck.SelectedItem).CardEffect_1;
                 m__currentCard.CardEffect_2     = ((Card)CardDeck.SelectedItem).CardEffect_2;
-
-                // TODO WIP Add missing data
             }
  
         }
@@ -302,12 +301,12 @@ namespace CardTool
         {
             // If card ID exists, don't add and inform user. Else, add a new card in the collection.
             //
-            if (CardExist(m__currentCard.CardId))
+            if (CardExist(m__currentCard.CardUniqueId))
             {
-                MessageBox.Show("La carte avec l'ID " + m__currentCard.CardId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La carte avec l'ID " + m__currentCard.CardUniqueId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else {
-                Card serializedCard = new Card(m__currentCard.CardId, m__currentCard.CardCost, m__currentCard.CardTitle, m__currentCard.CardDescription,
+                Card serializedCard = new Card(m__currentCard.CardUniqueId, m__currentCard.CardGlobalId, m__currentCard.CardCost, m__currentCard.CardTitle, m__currentCard.CardDescription,
                     m__currentCard.CardImagePath, m__currentCard.CardSfx, m__currentCard.CardCategory, m__currentCard.CardEffect_1, m__currentCard.CardEffect_2);
 
                 // WIP TODO Add missing data
@@ -341,13 +340,14 @@ namespace CardTool
             // If another card exists with a specified ID, don't edit
             // Else, edit the card and sort the card collection
             //
-            if (CardExist(m__currentCard.CardId) && ((Card)CardDeck.SelectedItem).CardId != m__currentCard.CardId) 
+            if (CardExist(m__currentCard.CardUniqueId) && ((Card)CardDeck.SelectedItem).CardUniqueId != m__currentCard.CardUniqueId) 
             {
-                MessageBox.Show("Edition impossible. La carte avec l'ID " + m__currentCard.CardId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Edition impossible. La carte avec l'ID " + m__currentCard.CardUniqueId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                ((Card)CardDeck.SelectedItem).CardId            = m__currentCard.CardId;
+                ((Card)CardDeck.SelectedItem).CardUniqueId      = m__currentCard.CardUniqueId;
+                ((Card)CardDeck.SelectedItem).CardGlobalId      = m__currentCard.CardGlobalId;
                 ((Card)CardDeck.SelectedItem).CardCost          = m__currentCard.CardCost;
                 ((Card)CardDeck.SelectedItem).CardTitle         = m__currentCard.CardTitle;
                 ((Card)CardDeck.SelectedItem).CardDescription   = m__currentCard.CardDescription;
@@ -375,7 +375,7 @@ namespace CardTool
 
         private void DeleteCardCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBoxResult deleteCurrentCard = MessageBox.Show("Supprimer la carte " + ((Card)CardDeck.SelectedItem).CardTitle + ", possédant l'id " + ((Card)CardDeck.SelectedItem).CardId + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult deleteCurrentCard = MessageBox.Show("Supprimer la carte " + ((Card)CardDeck.SelectedItem).CardTitle + ", possédant l'id " + ((Card)CardDeck.SelectedItem).CardUniqueId + " ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
             // If yes, update collection by removing and sorting
             //
@@ -453,7 +453,7 @@ namespace CardTool
             {
                 // Sort m__cardCollection in a new collection because OrderBy does not modify the source !
                 //
-                ObservableCollection<Card> collectionSorted = new ObservableCollection<Card>(m__cardCollection.OrderBy(c => c.CardId));
+                ObservableCollection<Card> collectionSorted = new ObservableCollection<Card>(m__cardCollection.OrderBy(c => c.CardUniqueId));
                 SerializationTools.WriteDeckToXML(collectionSorted, saveFileDialog.FileName);
                 m__deckSaved = true;
             }
@@ -465,7 +465,7 @@ namespace CardTool
         void SortCardCollectionByAcendingId()
         {
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(CardDeck.ItemsSource);
-            view.SortDescriptions.Add(new SortDescription("CardId", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("CardUniqueId", ListSortDirection.Ascending));
         }
 
         /// <summary>
@@ -478,11 +478,11 @@ namespace CardTool
 
             // Translate headerName to sortBy data
             //
-            string sortBy = "CardId";
+            string sortBy = "CardUniqueId";
 
             if (headerName == m__uiTextData.GridviewDataHeaderId)
             {
-                sortBy = "CardId";
+                sortBy = "CardUniqueId";
             }
             else if (headerName == m__uiTextData.GridviewDataHeaderTitle)
             {
@@ -511,8 +511,8 @@ namespace CardTool
         bool CardExist(int id)
         {
             foreach(Card card in m__cardCollection){
-                //Console.WriteLine(card.CardId);
-                if (card.CardId == id) return true;
+                if (card.CardUniqueId == id) 
+                    return true;
             }
 
             return false;

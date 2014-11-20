@@ -128,7 +128,7 @@
                       GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Id" Width="40"  DisplayMemberBinding="{Binding Path=CardId}" />
+                        <GridViewColumn Header="Id" Width="40"  DisplayMemberBinding="{Binding Path=CardUniqueId}" />
                         <GridViewColumn Header="Titre" Width="130" DisplayMemberBinding="{Binding Path=CardTitle}" />
                         <GridViewColumn Header="Catégorie" Width="130" DisplayMemberBinding="{Binding Path=CardCategory}" />
                     </GridView>
@@ -178,14 +178,18 @@
                 <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={StaticResource CategoryDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardCategory}" Name="CategoryField" />
 
                 <!-- 2nd column -->
-                <Label Grid.Row="0" Grid.Column="3" Content="ID :"/>
+                <Label Grid.Row="0" Grid.Column="3" Content="Unique ID :"/>
                 <TextBox Grid.Row="0" Grid.Column="4" Margin="3" Validation.Error="Validation_Error" Name="IdField"
-                         Text="{Binding Path=CurrentCard.CardId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=true}"  />
+                         Text="{Binding Path=CurrentCard.CardUniqueId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=true}"  />
 
-                <Label Grid.Row="1" Grid.Column="3" Content="SFX :"/>
-                <ComboBox Grid.Row="1" Grid.Column="4" Margin="3" ItemsSource="{Binding Source={StaticResource SfxDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardSfx}" Name="SfxField" />
+                <Label Grid.Row="1" Grid.Column="3" Content="Global ID :"/>
+                <TextBox Grid.Row="1" Grid.Column="4" Margin="3" Validation.Error="Validation_Error"
+                         Text="{Binding Path=CurrentCard.CardGlobalId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=true}"  />
 
-                <!-- Effects TODO List of effects-->
+                <Label Grid.Row="2" Grid.Column="3" Content="SFX :"/>
+                <ComboBox Grid.Row="2" Grid.Column="4" Margin="3" ItemsSource="{Binding Source={StaticResource SfxDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardSfx}" Name="SfxField" />
+
+                <!-- Effects -->
                 <Label Grid.Row="4" Grid.Column="0" Content="Effet 1 :" Grid.RowSpan="2"/>
                 <ComboBox Grid.Row="4" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={StaticResource EffectDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardEffect_1}" />
                 <Label Grid.Row="4" Grid.Column="3" Content="Effet 2 :" Grid.RowSpan="2"/>

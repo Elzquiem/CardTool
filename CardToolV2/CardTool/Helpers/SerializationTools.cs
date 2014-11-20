@@ -42,8 +42,12 @@ namespace CardTool
             {
                 writer.WriteStartElement("card");
 
-                writer.WriteStartElement("id");
-                writer.WriteValue(card.CardId);
+                writer.WriteStartElement("uniqueId");
+                writer.WriteValue(card.CardUniqueId);
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("globalId");
+                writer.WriteValue(card.CardGlobalId);
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("title");
@@ -97,7 +101,7 @@ namespace CardTool
 
             // Card attributes
             //
-            int id, cost;
+            int uniqueId, globalId, cost;
             string title, description, imagePath;
 
             CardEffect effect1, effect2;
@@ -118,9 +122,12 @@ namespace CardTool
 
                     try
                     {
-                        reader.ReadToFollowing("id");
-                        id = reader.ReadElementContentAsInt();
+                        reader.ReadToFollowing("uniqueId");
+                        uniqueId = reader.ReadElementContentAsInt();
                         //Console.WriteLine("Content of " + reader.Name + " : " + reader.ReadElementContentAsString());
+
+                        reader.ReadToFollowing("globalId");
+                        globalId = reader.ReadElementContentAsInt();
 
                         reader.ReadToFollowing("title");
                         title = reader.ReadElementContentAsString();
@@ -148,10 +155,10 @@ namespace CardTool
 
                         // Create and add card to CardCollection
                         //
-                        Card card = new Card(id, cost, title, description, imagePath, sfx, category, effect1, effect2);
+                        Card card = new Card(uniqueId, globalId, cost, title, description, imagePath, sfx, category, effect1, effect2);
                         cardCollection.Add(card);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // If the reader fails, then the XML data is invalid. Notify the user of this error.
                         //

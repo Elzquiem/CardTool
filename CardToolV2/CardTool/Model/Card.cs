@@ -33,7 +33,8 @@ namespace CardTool
     public class Card : IDataErrorInfo, INotifyPropertyChanged
     {
 
-        private int m__id;
+        private int m__UniqueId;
+        private int m__GlobalId;
         private int m__cost;
 
         private SfxType m__sfx;
@@ -50,14 +51,24 @@ namespace CardTool
 
         #region PROPERTIES
 
-        public int CardId
+        public int CardUniqueId
         {
-            get { return m__id; }
+            get { return m__UniqueId; }
             set
             {
-                m__id = Math.Abs(value); 
-                this.OnPropertyChanged("CardId");
+                m__UniqueId = Math.Abs(value); 
+                this.OnPropertyChanged("CardUniqueId");
                 this.OnPropertyChanged("FullCard");
+            }
+        }
+
+        public int CardGlobalId
+        {
+            get { return m__GlobalId; }
+            set
+            {
+                m__GlobalId = Math.Abs(value);
+                this.OnPropertyChanged("CardGlobalId");
             }
         }
 
@@ -143,7 +154,7 @@ namespace CardTool
         {
             get
             {
-                return this.CardId + " " + this.CardTitle + " " + this.CardCost + " " + this.CardDescription;
+                return this.CardUniqueId + " " + this.CardTitle + " " + this.CardCost + " " + this.CardDescription;
             }
         }
         #endregion
@@ -152,7 +163,7 @@ namespace CardTool
 
         public Card()
         {
-            m__id = 0;
+            m__UniqueId = 0;
             m__cost = 0;
             m__title = "Nouvelle carte";
             m__description = "";
@@ -163,11 +174,9 @@ namespace CardTool
             m__effect_2 = CardEffect.NONE;
         }
 
-        // TODO WIP Finalize constructors
-        //
         public Card(int id, int cost, string title, string description, string imgPath)
         {
-            m__id = id;
+            m__UniqueId = id;
             m__cost = cost;
             m__title = title;
             m__description = description;
@@ -176,7 +185,7 @@ namespace CardTool
 
         public Card(int id, int cost, string title, string description, string imgPath, SfxType sfx, Category category)
         {
-            m__id = id;
+            m__UniqueId = id;
             m__cost = cost;
             m__title = title;
             m__description = description;
@@ -185,9 +194,10 @@ namespace CardTool
             m__category = category;
         }
 
-        public Card(int id, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
+        public Card(int uniqueId, int globalId, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
         {
-            m__id = id;
+            m__UniqueId = uniqueId;
+            m__GlobalId = globalId;
             m__cost = cost;
             m__title = title;
             m__description = description;
@@ -210,7 +220,8 @@ namespace CardTool
         /// </summary>
         public void IncrementData()
         {
-            CardId++;
+            CardUniqueId++;
+            CardGlobalId = 0;
             CardCost = 0;
             CardTitle = "Nouvelle carte";
             CardDescription = "";
@@ -226,7 +237,8 @@ namespace CardTool
         /// </summary>
         public void ResetData()
         {
-            CardId = 0;
+            CardUniqueId = 0;
+            CardGlobalId = 0;
             CardCost = 0;
             CardTitle = "Nouvelle carte";
             CardDescription = "";
