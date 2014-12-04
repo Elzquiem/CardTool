@@ -4,11 +4,11 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:self="clr-namespace:CardTool"
         xmlns:Converter="clr-namespace:CardTool.Helpers"
-        Title="Card tool - Coucou les copains" 
+        Title="The Expirables - Card Tool" 
         WindowStartupLocation="CenterScreen"
         Closing="DataWindow_Closing"
         ResizeMode="CanMinimize"
-        Width="800" Height="600"  MinWidth="800" MinHeight="600">
+        Width="850" Height="600"  MinWidth="800" MinHeight="600">
 
     <!-- Resources -->
     <Window.Resources>
@@ -128,7 +128,7 @@
                       GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="G.Id" Width="40"  DisplayMemberBinding="{Binding Path=CardGlobalId}" />
+                        <!--<GridViewColumn Header="G.Id" Width="40"  DisplayMemberBinding="{Binding Path=CardGlobalId}" />-->
                         <GridViewColumn Header="Titre" Width="130" DisplayMemberBinding="{Binding Path=CardTitle}" />
                         <GridViewColumn Header="Catégorie" Width="130" DisplayMemberBinding="{Binding Path=CardCategory}" />
                     </GridView>
@@ -190,11 +190,12 @@
                 <ComboBox Grid.Row="2" Grid.Column="4" Margin="3" ItemsSource="{Binding Source={StaticResource SfxDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardSfx}" Name="SfxField" />
 
                 <!-- Effects -->
-                <Label Grid.Row="4" Grid.Column="0" Content="Effet 1 :" Grid.RowSpan="2"/>
+                <!--<Label Grid.Row="4" Grid.Column="0" Content="Effet 1 :" Grid.RowSpan="2"/>
                 <ComboBox Grid.Row="4" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={StaticResource EffectDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardEffect_1}" />
                 <Label Grid.Row="4" Grid.Column="3" Content="Effet 2 :" Grid.RowSpan="2"/>
                 <ComboBox Grid.Row="4" Grid.Column="4" Margin="3" ItemsSource="{Binding Source={StaticResource EffectDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardEffect_2}" />
-
+                -->
+                
                 <!-- Description -->
                 <Label Grid.Row="6" Grid.Column="0" Content="Description :" />
                 <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="3" AcceptsReturn="True" Name="DescriptionField"

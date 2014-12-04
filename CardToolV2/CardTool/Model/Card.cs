@@ -33,8 +33,8 @@ namespace CardTool
     public class Card : IDataErrorInfo, INotifyPropertyChanged
     {
 
-        private int m__UniqueId;
-        private int m__GlobalId;
+        private string m__UniqueId;
+        private string m__GlobalId;
         private int m__cost;
 
         private SfxType m__sfx;
@@ -47,27 +47,24 @@ namespace CardTool
         private CardEffect m__effect_1;
         private CardEffect m__effect_2;
 
-        // TODO Add missing field and properties
-
         #region PROPERTIES
 
-        public int CardUniqueId
+        public string CardUniqueId
         {
             get { return m__UniqueId; }
             set
             {
-                m__UniqueId = Math.Abs(value); 
+                m__UniqueId = value; 
                 this.OnPropertyChanged("CardUniqueId");
-                this.OnPropertyChanged("FullCard");
             }
         }
 
-        public int CardGlobalId
+        public string CardGlobalId
         {
             get { return m__GlobalId; }
             set
             {
-                m__GlobalId = Math.Abs(value);
+                m__GlobalId = value;
                 this.OnPropertyChanged("CardGlobalId");
             }
         }
@@ -78,7 +75,6 @@ namespace CardTool
             set { 
                 m__cost = Math.Abs(value);
                 this.OnPropertyChanged("CardCost");
-                this.OnPropertyChanged("FullCard");
             }
         }
 
@@ -88,7 +84,6 @@ namespace CardTool
             set { 
                 m__title = value;
                 this.OnPropertyChanged("CardTitle");
-                this.OnPropertyChanged("FullCard");
             }
         }
 
@@ -98,7 +93,6 @@ namespace CardTool
             set { 
                 m__description = value;
                 this.OnPropertyChanged("CardDescription");
-                this.OnPropertyChanged("FullCard");
             }
         }
 
@@ -148,22 +142,14 @@ namespace CardTool
             }
         }
 
-        // DEBUG
-        //
-        public string FullCard
-        {
-            get
-            {
-                return this.CardUniqueId + " " + this.CardTitle + " " + this.CardCost + " " + this.CardDescription;
-            }
-        }
         #endregion
 
         #region CONTRUCTORS
 
         public Card()
         {
-            m__UniqueId = 0;
+            m__UniqueId = "UID not defined";
+            m__GlobalId = "GID000020141200.01.00"; // TODO Generate GID according to syntax
             m__cost = 0;
             m__title = "Nouvelle carte";
             m__description = "";
@@ -174,7 +160,7 @@ namespace CardTool
             m__effect_2 = CardEffect.NONE;
         }
 
-        public Card(int id, int cost, string title, string description, string imgPath)
+        public Card(string id, int cost, string title, string description, string imgPath)
         {
             m__UniqueId = id;
             m__cost = cost;
@@ -183,7 +169,7 @@ namespace CardTool
             m__imagePath = imgPath;
         }
 
-        public Card(int id, int cost, string title, string description, string imgPath, SfxType sfx, Category category)
+        public Card(string id, int cost, string title, string description, string imgPath, SfxType sfx, Category category)
         {
             m__UniqueId = id;
             m__cost = cost;
@@ -194,7 +180,7 @@ namespace CardTool
             m__category = category;
         }
 
-        public Card(int uniqueId, int globalId, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
+        public Card(string uniqueId, string globalId, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
         {
             m__UniqueId = uniqueId;
             m__GlobalId = globalId;
@@ -208,9 +194,9 @@ namespace CardTool
             m__effect_2 = effect2;
         }
 
-        public Card(int globalId, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
+        public Card(string globalId, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
         {
-            m__UniqueId = 0;
+            m__UniqueId = "UID not defined";
             m__GlobalId = globalId;
             m__cost = cost;
             m__title = title;
@@ -227,15 +213,13 @@ namespace CardTool
 
         #region METHODS
 
-        // TODO Finalize methods with missing data
-
         /// <summary>
         /// When adding a new card, increment data of card for UX
         /// </summary>
         public void IncrementData()
         {
-            CardUniqueId++;
-            CardGlobalId = 0;
+            //CardUniqueId++;
+            CardGlobalId = "GID000020141200.01.00";
             CardCost = 0;
             CardTitle = "Nouvelle carte";
             CardDescription = "";
@@ -251,8 +235,8 @@ namespace CardTool
         /// </summary>
         public void ResetData()
         {
-            CardUniqueId = 0;
-            CardGlobalId = 0;
+            CardUniqueId = "UID not defined";
+            CardGlobalId = "GID000020141200.01.00";
             CardCost = 0;
             CardTitle = "Nouvelle carte";
             CardDescription = "";
@@ -296,10 +280,24 @@ namespace CardTool
             {
                 string result = null;
 
+                // Add new Validation Error messages here with properties
+                //
                 if (columnName == "CardTitle")
                 {
                     if (CardTitle.Length == 0)
                         result = "Le titre ne doit pas être vide.";
+                }
+
+                if (columnName == "Card")
+                {
+                    if (CardGlobalId.Length != 21)
+                        result = "L'id global doit comporter exactement 21 charactères.";
+                }
+
+                if (columnName == "CardGlobalId")
+                {
+                    if (CardGlobalId.Length != 21)
+                        result = "L'id global doit comporter exactement 21 charactères.";
                 }
 
                 return result;

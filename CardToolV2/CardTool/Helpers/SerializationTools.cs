@@ -101,8 +101,8 @@ namespace CardTool
 
             // Card attributes
             //
-            int uniqueId, globalId, cost;
-            string title, description, imagePath;
+            int cost;
+            string uniqueId, globalId, title, description, imagePath;
 
             CardEffect effect1, effect2;
             Category category;
@@ -123,11 +123,11 @@ namespace CardTool
                     try
                     {
                         //reader.ReadToFollowing("uniqueId");
-                        //uniqueId = reader.ReadElementContentAsInt();
+                        //uniqueId = reader.ReadElementContentAsString();
                         //Console.WriteLine("Content of " + reader.Name + " : " + reader.ReadElementContentAsString());
 
                         reader.ReadToFollowing("globalId");
-                        globalId = reader.ReadElementContentAsInt();
+                        globalId = reader.ReadElementContentAsString();
 
                         reader.ReadToFollowing("title");
                         title = reader.ReadElementContentAsString();

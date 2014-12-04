@@ -96,15 +96,15 @@ namespace CardTool
         //
         private void Debug_Click(object sender, RoutedEventArgs e)
         {
-            Card serializedCard1 = new Card(0, 0, 1, "Test 1", "Description 1", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard2 = new Card(2, 0, 2, "Test 2", "Description 2", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.TREASURE, CardEffect.SPEED_UP, CardEffect.SPEED_UP);
-            Card serializedCard3 = new Card(5, 1, 5, "Test 3", "Description 3", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.SLOW, CardEffect.NONE);
-            Card serializedCard4 = new Card(3, 1, 4, "Test 4", "Description 4", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.NONE, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard5 = new Card(12, 1, 2, "Test 5", "Description 5", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard6 = new Card(50, 0, 1, "Test 6", "Description 6", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.TREASURE, CardEffect.SLOW, CardEffect.SLOW);
-            Card serializedCard7 = new Card(42, 2, 42, "Test 7", "La réponse", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.BONUS, Category.NONE, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard8 = new Card(37, 3, 2, "Test 8", "Description 7", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.SPEED_UP, CardEffect.SLOW);
-            Card serializedCard9 = new Card(25, 4, 3, "Test 9", "Description 8", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard1 = new Card("0", "GID010020141200.01.00", 1, "Test 1", "Description 1", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard2 = new Card("2", "GID020020141200.01.00", 2, "Test 2", "Description 2", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.TREASURE, CardEffect.SPEED_UP, CardEffect.SPEED_UP);
+            Card serializedCard3 = new Card("5", "GID030020141200.01.00", 5, "Test 3", "Description 3", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.SLOW, CardEffect.NONE);
+            Card serializedCard4 = new Card("3", "GID040020141200.01.00", 4, "Test 4", "Description 4", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.NONE, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard5 = new Card("12", "GID050020141200.01.00", 2, "Test 5", "Description 5", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard6 = new Card("50", "GID060020141200.01.00", 1, "Test 6", "Description 6", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.TREASURE, CardEffect.SLOW, CardEffect.SLOW);
+            Card serializedCard7 = new Card("42", "GID070020141200.01.00", 42, "Test 7", "La réponse", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.BONUS, Category.NONE, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard8 = new Card("37", "GID080020141200.01.00", 2, "Test 8", "Description 7", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.SPEED_UP, CardEffect.SLOW);
+            Card serializedCard9 = new Card("25", "GID090020141200.01.00", 3, "Test 9", "Description 8", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
 
             // Update collection by adding a card
             //
@@ -301,30 +301,27 @@ namespace CardTool
         {
             // If card ID exists, don't add and inform user. Else, add a new card in the collection.
             //
-            /*if (CardExist(m__currentCard.CardUniqueId))
+            if (CardExistWithGlobalId(m__currentCard.CardGlobalId))
             {
-                MessageBox.Show("La carte avec l'ID " + m__currentCard.CardUniqueId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("La carte avec l'ID global " + m__currentCard.CardGlobalId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else {}*/
+            else
+            {
 
-            Card serializedCard = new Card(m__currentCard.CardUniqueId, m__currentCard.CardGlobalId, m__currentCard.CardCost, m__currentCard.CardTitle, m__currentCard.CardDescription,
-                m__currentCard.CardImagePath, m__currentCard.CardSfx, m__currentCard.CardCategory, m__currentCard.CardEffect_1, m__currentCard.CardEffect_2);
+                Card serializedCard = new Card(m__currentCard.CardUniqueId, m__currentCard.CardGlobalId, m__currentCard.CardCost, m__currentCard.CardTitle, m__currentCard.CardDescription,
+                    m__currentCard.CardImagePath, m__currentCard.CardSfx, m__currentCard.CardCategory, m__currentCard.CardEffect_1, m__currentCard.CardEffect_2);
 
-            // WIP TODO Add missing data
-            //
+                // Update collection by adding a card
+                //
+                m__cardCollection.Add(serializedCard);
 
-            // Update collection by adding a card
-            //
-            m__cardCollection.Add(serializedCard);
+                // Increment card data for UX and sort card collection
+                //
+                m__currentCard.IncrementData();
+                //SortCardCollectionByAcendingId();
 
-            // Increment card data for UX and sort card collection
-            //
-            m__currentCard.IncrementData();
-            //SortCardCollectionByAcendingId();
-
-            m__deckSaved = false;
-
-            
+                m__deckSaved = false;
+            } 
 
         }
 
@@ -332,7 +329,7 @@ namespace CardTool
         //
         private void EditCardCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ((Card)CardDeck.SelectedItem) != null;
+            e.CanExecute = ((Card)CardDeck.SelectedItem) != null && m__numberOfErrors == 0;
         }
 
         private void EditCardCommand_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -341,9 +338,9 @@ namespace CardTool
             // If another card exists with a specified ID, don't edit
             // Else, edit the card and sort the card collection
             //
-            if (CardExist(m__currentCard.CardUniqueId) && ((Card)CardDeck.SelectedItem).CardUniqueId != m__currentCard.CardUniqueId) 
+            if (CardExistWithGlobalId(m__currentCard.CardGlobalId) && ((Card)CardDeck.SelectedItem).CardGlobalId != m__currentCard.CardGlobalId) 
             {
-                MessageBox.Show("Edition impossible. La carte avec l'ID " + m__currentCard.CardUniqueId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Edition impossible. La carte avec l'ID global " + m__currentCard.CardGlobalId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -357,8 +354,6 @@ namespace CardTool
                 ((Card)CardDeck.SelectedItem).CardCategory      = m__currentCard.CardCategory;
                 ((Card)CardDeck.SelectedItem).CardEffect_1      = m__currentCard.CardEffect_1;
                 ((Card)CardDeck.SelectedItem).CardEffect_2      = m__currentCard.CardEffect_2;
-
-                //TODO Add missing data
 
                 //SortCardCollectionByAcendingId();
 
@@ -505,14 +500,31 @@ namespace CardTool
         }
 
         /// <summary>
-        /// Test if the card exists
+        /// Test if the card exists with the given unique id
         /// </summary>
-        /// <param name="id">The id of the card</param>
+        /// <param name="uniqueId">The unique id of the card</param>
         /// <returns><b>True</b> if the card exists, <b>False</b> otherwise</returns>
-        bool CardExist(int id)
+        bool CardExistWithUniqueId(string uniqueId)
         {
             foreach(Card card in m__cardCollection){
-                if (card.CardUniqueId == id) 
+                if (card.CardUniqueId == uniqueId) 
+                    return true;
+            }
+
+            return false;
+
+        }
+
+        /// <summary>
+        /// Test if the card exists with the given global id
+        /// </summary>
+        /// <param name="globalId">The global id of the card</param>
+        /// <returns><b>True</b> if the card exists, <b>False</b> otherwise</returns>
+        bool CardExistWithGlobalId(string globalId)
+        {
+            foreach (Card card in m__cardCollection)
+            {
+                if (card.CardGlobalId == globalId)
                     return true;
             }
 
