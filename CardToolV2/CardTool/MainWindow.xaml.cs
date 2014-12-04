@@ -301,29 +301,30 @@ namespace CardTool
         {
             // If card ID exists, don't add and inform user. Else, add a new card in the collection.
             //
-            if (CardExist(m__currentCard.CardUniqueId))
+            /*if (CardExist(m__currentCard.CardUniqueId))
             {
                 MessageBox.Show("La carte avec l'ID " + m__currentCard.CardUniqueId + " existe déjà !", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else {
-                Card serializedCard = new Card(m__currentCard.CardUniqueId, m__currentCard.CardGlobalId, m__currentCard.CardCost, m__currentCard.CardTitle, m__currentCard.CardDescription,
-                    m__currentCard.CardImagePath, m__currentCard.CardSfx, m__currentCard.CardCategory, m__currentCard.CardEffect_1, m__currentCard.CardEffect_2);
+            else {}*/
 
-                // WIP TODO Add missing data
-                //
+            Card serializedCard = new Card(m__currentCard.CardUniqueId, m__currentCard.CardGlobalId, m__currentCard.CardCost, m__currentCard.CardTitle, m__currentCard.CardDescription,
+                m__currentCard.CardImagePath, m__currentCard.CardSfx, m__currentCard.CardCategory, m__currentCard.CardEffect_1, m__currentCard.CardEffect_2);
 
-                // Update collection by adding a card
-                //
-                m__cardCollection.Add(serializedCard);
+            // WIP TODO Add missing data
+            //
 
-                // Increment card data for UX and sort card collection
-                //
-                m__currentCard.IncrementData();
-                //SortCardCollectionByAcendingId();
+            // Update collection by adding a card
+            //
+            m__cardCollection.Add(serializedCard);
 
-                m__deckSaved = false;
+            // Increment card data for UX and sort card collection
+            //
+            m__currentCard.IncrementData();
+            //SortCardCollectionByAcendingId();
 
-            }
+            m__deckSaved = false;
+
+            
 
         }
 
@@ -453,7 +454,7 @@ namespace CardTool
             {
                 // Sort m__cardCollection in a new collection because OrderBy does not modify the source !
                 //
-                ObservableCollection<Card> collectionSorted = new ObservableCollection<Card>(m__cardCollection.OrderBy(c => c.CardUniqueId));
+                ObservableCollection<Card> collectionSorted = new ObservableCollection<Card>(m__cardCollection.OrderBy(c => c.CardGlobalId));
                 SerializationTools.WriteDeckToXML(collectionSorted, saveFileDialog.FileName);
                 m__deckSaved = true;
             }
@@ -478,11 +479,11 @@ namespace CardTool
 
             // Translate headerName to sortBy data
             //
-            string sortBy = "CardUniqueId";
+            string sortBy = "CardGlobalId";
 
             if (headerName == m__uiTextData.GridviewDataHeaderId)
             {
-                sortBy = "CardUniqueId";
+                sortBy = "CardGlobalId";
             }
             else if (headerName == m__uiTextData.GridviewDataHeaderTitle)
             {

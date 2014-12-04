@@ -128,7 +128,7 @@
                       GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Id" Width="40"  DisplayMemberBinding="{Binding Path=CardUniqueId}" />
+                        <GridViewColumn Header="G.Id" Width="40"  DisplayMemberBinding="{Binding Path=CardGlobalId}" />
                         <GridViewColumn Header="Titre" Width="130" DisplayMemberBinding="{Binding Path=CardTitle}" />
                         <GridViewColumn Header="Catégorie" Width="130" DisplayMemberBinding="{Binding Path=CardCategory}" />
                     </GridView>
@@ -178,9 +178,9 @@
                 <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={StaticResource CategoryDataProvider}}"  SelectedItem="{Binding Path=CurrentCard.CardCategory}" Name="CategoryField" />
 
                 <!-- 2nd column -->
-                <Label Grid.Row="0" Grid.Column="3" Content="Unique ID :"/>
+                <!--<Label Grid.Row="0" Grid.Column="3" Content="Unique ID :"/>
                 <TextBox Grid.Row="0" Grid.Column="4" Margin="3" Validation.Error="Validation_Error" Name="IdField"
-                         Text="{Binding Path=CurrentCard.CardUniqueId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=true}"  />
+                         Text="{Binding Path=CurrentCard.CardUniqueId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=true}"  />-->
 
                 <Label Grid.Row="1" Grid.Column="3" Content="Global ID :"/>
                 <TextBox Grid.Row="1" Grid.Column="4" Margin="3" Validation.Error="Validation_Error"

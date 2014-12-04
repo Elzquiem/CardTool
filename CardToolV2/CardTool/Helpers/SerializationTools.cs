@@ -42,9 +42,9 @@ namespace CardTool
             {
                 writer.WriteStartElement("card");
 
-                writer.WriteStartElement("uniqueId");
+                /*writer.WriteStartElement("uniqueId");
                 writer.WriteValue(card.CardUniqueId);
-                writer.WriteEndElement();
+                writer.WriteEndElement();*/
 
                 writer.WriteStartElement("globalId");
                 writer.WriteValue(card.CardGlobalId);
@@ -122,8 +122,8 @@ namespace CardTool
 
                     try
                     {
-                        reader.ReadToFollowing("uniqueId");
-                        uniqueId = reader.ReadElementContentAsInt();
+                        //reader.ReadToFollowing("uniqueId");
+                        //uniqueId = reader.ReadElementContentAsInt();
                         //Console.WriteLine("Content of " + reader.Name + " : " + reader.ReadElementContentAsString());
 
                         reader.ReadToFollowing("globalId");
@@ -155,7 +155,7 @@ namespace CardTool
 
                         // Create and add card to CardCollection
                         //
-                        Card card = new Card(uniqueId, globalId, cost, title, description, imagePath, sfx, category, effect1, effect2);
+                        Card card = new Card(globalId, cost, title, description, imagePath, sfx, category, effect1, effect2);
                         cardCollection.Add(card);
                     }
                     catch (Exception)

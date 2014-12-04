@@ -208,6 +208,20 @@ namespace CardTool
             m__effect_2 = effect2;
         }
 
+        public Card(int globalId, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
+        {
+            m__UniqueId = 0;
+            m__GlobalId = globalId;
+            m__cost = cost;
+            m__title = title;
+            m__description = description;
+            m__imagePath = imgPath;
+            m__sfx = sfx;
+            m__category = category;
+            m__effect_1 = effect1;
+            m__effect_2 = effect2;
+        }
+
         #endregion
 
 
