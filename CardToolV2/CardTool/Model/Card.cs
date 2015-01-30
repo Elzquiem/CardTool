@@ -10,15 +10,18 @@ namespace CardTool
 
     public enum SfxType
     {
+		POSITIVE,
+        NEGATIVE,
         NEUTRAL,
-        BONUS,
-        MALUS
+		NORMAL   
     }
 
     public enum Category
     {
-        TREASURE,
-        DISCOVERY,
+        ACTION,
+		RELIC,
+		OBJECTIVE,
+        CHARACTER,
         MISCELLANEOUS,
         NONE
     }

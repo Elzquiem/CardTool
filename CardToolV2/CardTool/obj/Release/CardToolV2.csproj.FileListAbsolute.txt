@@ -1,0 +1,16 @@
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\bin\Release\CardTool.exe.config
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\bin\Release\CardTool.exe
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\bin\Release\CardTool.pdb
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardPopup.baml
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardPopup.g.cs
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\MainWindow.g.cs
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\App.g.cs
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardTool_MarkupCompile.cache
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardTool_MarkupCompile.lref
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\MainWindow.baml
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardTool.g.resources
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardTool.Properties.Resources.resources
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardToolV2.csproj.GenerateResource.Cache
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardTool.exe
+C:\Users\cyril.leprince\Documents\VSCardTool\CardToolV2\CardTool\obj\Release\CardTool.pdb

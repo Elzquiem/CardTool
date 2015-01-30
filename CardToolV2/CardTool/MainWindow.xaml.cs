@@ -96,15 +96,15 @@ namespace CardTool
         //
         private void Debug_Click(object sender, RoutedEventArgs e)
         {
-            Card serializedCard1 = new Card("0", "GID010020141200.01.00", 1, "Test 1", "Description 1", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard2 = new Card("2", "GID020020141200.01.00", 2, "Test 2", "Description 2", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.TREASURE, CardEffect.SPEED_UP, CardEffect.SPEED_UP);
-            Card serializedCard3 = new Card("5", "GID030020141200.01.00", 5, "Test 3", "Description 3", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.SLOW, CardEffect.NONE);
+            Card serializedCard1 = new Card("0", "GID010020141200.01.00", 1, "Test 1", "Description 1", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.CHARACTER, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard2 = new Card("2", "GID020020141200.01.00", 2, "Test 2", "Description 2", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.POSITIVE, Category.ACTION, CardEffect.SPEED_UP, CardEffect.SPEED_UP);
+            Card serializedCard3 = new Card("5", "GID030020141200.01.00", 5, "Test 3", "Description 3", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.NEGATIVE, Category.MISCELLANEOUS, CardEffect.SLOW, CardEffect.NONE);
             Card serializedCard4 = new Card("3", "GID040020141200.01.00", 4, "Test 4", "Description 4", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.NEUTRAL, Category.NONE, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard5 = new Card("12", "GID050020141200.01.00", 2, "Test 5", "Description 5", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.BONUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard6 = new Card("50", "GID060020141200.01.00", 1, "Test 6", "Description 6", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.TREASURE, CardEffect.SLOW, CardEffect.SLOW);
-            Card serializedCard7 = new Card("42", "GID070020141200.01.00", 42, "Test 7", "La réponse", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.BONUS, Category.NONE, CardEffect.NONE, CardEffect.NONE);
-            Card serializedCard8 = new Card("37", "GID080020141200.01.00", 2, "Test 8", "Description 7", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.NEUTRAL, Category.DISCOVERY, CardEffect.SPEED_UP, CardEffect.SLOW);
-            Card serializedCard9 = new Card("25", "GID090020141200.01.00", 3, "Test 9", "Description 8", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.MALUS, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
+			Card serializedCard5 = new Card("12", "GID050020141200.01.00", 2, "Test 5", "Description 5", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.POSITIVE, Category.RELIC, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard6 = new Card("50", "GID060020141200.01.00", 1, "Test 6", "Description 6", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.NORMAL, Category.OBJECTIVE, CardEffect.SLOW, CardEffect.SLOW);
+			Card serializedCard7 = new Card("42", "GID070020141200.01.00", 42, "Test 7", "La réponse", Environment.CurrentDirectory + "/images/ImgTest.jpg", SfxType.POSITIVE, Category.NONE, CardEffect.NONE, CardEffect.NONE);
+            Card serializedCard8 = new Card("37", "GID080020141200.01.00", 2, "Test 8", "Description 7", Environment.CurrentDirectory + "/images/ImgTest.png", SfxType.NEUTRAL, Category.CHARACTER, CardEffect.SPEED_UP, CardEffect.SLOW);
+            Card serializedCard9 = new Card("25", "GID090020141200.01.00", 3, "Test 9", "Description 8", Environment.CurrentDirectory + "/images/ImgTest.jpeg", SfxType.NEGATIVE, Category.MISCELLANEOUS, CardEffect.NONE, CardEffect.NONE);
 
             // Update collection by adding a card
             //
