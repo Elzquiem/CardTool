@@ -151,7 +151,7 @@ namespace CardTool
 
         public Card()
         {
-            m__UniqueId = "UID not defined";
+			m__UniqueId = "UID0000000000111111";
             m__GlobalId = "GID000020141200.01.00"; // TODO Generate GID according to syntax
             m__cost = 0;
             m__title = "Nouvelle carte";
@@ -199,7 +199,7 @@ namespace CardTool
 
         public Card(string globalId, int cost, string title, string description, string imgPath, SfxType sfx, Category category, CardEffect effect1, CardEffect effect2)
         {
-            m__UniqueId = "UID not defined";
+			m__UniqueId = "UID0000000000111111";
             m__GlobalId = globalId;
             m__cost = cost;
             m__title = title;
@@ -221,7 +221,7 @@ namespace CardTool
         /// </summary>
         public void IncrementData()
         {
-            //CardUniqueId++;
+            CardUniqueId = "UID0000000000111111";
             CardGlobalId = "GID000020141200.01.00";
             CardCost = 0;
             CardTitle = "Nouvelle carte";
@@ -238,7 +238,7 @@ namespace CardTool
         /// </summary>
         public void ResetData()
         {
-            CardUniqueId = "UID not defined";
+			CardUniqueId = "UID0000000000111111";
             CardGlobalId = "GID000020141200.01.00";
             CardCost = 0;
             CardTitle = "Nouvelle carte";
@@ -302,6 +302,12 @@ namespace CardTool
                     if (CardGlobalId.Length != 21)
                         result = "L'id global doit comporter exactement 21 charactères.";
                 }
+
+				if (columnName == "CardUniqueId")
+				{
+					if (CardUniqueId.Length != 19)
+						result = "L'id unique doit comporter exactement 19 charactères.";
+				}
 
                 return result;
             }
